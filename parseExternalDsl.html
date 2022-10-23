@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+            function renderEmptyLine(line) {
+                return `${line.number}:`;
+            }
+
+            function renderLine(line, humanFriendly) {
+                const conditions = line.conditions
+                    .map(condition => condition.render(condition, humanFriendly))
+                    .join('<span style="color:red;">, </span>')
+
+                return `
+                    ${line.number}:
+                    <span style="color:green;">${conditions}</span>
+                    <span style="color:red;">-></span>
+                    <span style="color:blue;">${line.account}</span>
+                `;
+            }
+
+            function renderFaultyLine(line) {
+                return `
+                    ${line.number}: ${line.content}<br />
+                    <span style="color: red;">&uarr; ${line.error}</span>
+                `
+            }
+
+            function parse() {
+                let lineNumber = 0;
+                const dsl = document.getElementById('input').value;
+
+                const lines = dsl
+                    .split("\n")
+                    .map(line => ({
+                        number: lineNumber++,
+                        content: line.trim(),
+                    }))
+                    .map(line => {
+                        if (line.content === "") {
+                            return {
+                                ...line,
+                                render: renderEmptyLine,
+                            }
+                        }
+
+                        const sides = line.content.split("->")
+                        if (sides.length !== 2) {
+                            return {
+                                ...line,
+                                render: renderFaultyLine,
+                                error: 'Zeile konnte nicht geparst werden',
+                            }
+                        }
+
+                        return {
+                            ...line,
+                            conditions: getConditions(sides[0]),
+                            account: sides[1],
+                            render: renderLine,
+                        }
+                    });
+
+                const html = lines.map(line => line.render(line)).join('<br />');
+                document.getElementById('output').innerHTML = html;
+
+                const htmlHumanFriendly = lines.map(line => line.render(line, true)).join('<br />');
+                document.getElementById('output-human-friendly').innerHTML = htmlHumanFriendly;
+            }
+
+            function getConditions(content) {
+                if (content.includes(',')) {
+                    return content
+                        .split(',')
+                        .map(condition => condition.trim())
+                        .filter(condition => condition !== "")
+                        .map(condition => createCondition(condition))
+                }
+
+                return [createCondition(content)]
+            }
+
+            function createCondition(condition) {
+                condition = condition.trim()
+                
+                if (condition.toLowerCase() === "brief") {
+                    return {
+                        isLetter: true,
+                        render: renderLetterCondition,
+                    }
+                } else if (condition.toLowerCase() === "paket") {
+                    return {
+                        isParcel: true,
+                        render: renderParcelCondition,
+                    }
+                } else if (/[\d]+\*/.test(condition)) {
+                    return {
+                        plzStartsWith: condition.replaceAll('*', ''),
+                        render: renderPlzCondition,
+                    }
+                } else if (/^[a-zA-ZäöüÄÜÖ]+$/.test(condition)) {
+                    return {
+                        country: condition,
+                        render: renderCountryCondition,
+                    }
+                } else if (condition === "*") {
+                    return {
+                        render: renderOtherCondition,
+                    }
+                } else {
+                    return {
+                        error: condition,
+                        render: renderErrorCondition,
+                    }
+                }
+            }
+
+            function renderLetterCondition(condition, humanFriendly) {
+                if (humanFriendly) {
+                    return `ist ein Brief`;
+                } else {
+                    return `Brief`
+                }
+            }
+
+            function renderParcelCondition(condition, humanFriendly) {
+                if (humanFriendly) {
+                    return `ist ein Paket`;
+                } else {
+                    return `Paket`
+                }
+            }
+
+            function renderPlzCondition(condition, humanFriendly) {
+                if (humanFriendly) {
+                    return `PLZ beginnt mit ${condition.plzStartsWith}`;
+                } else {
+                    return `${condition.plzStartsWith}*`;
+                }
+            }
+
+            function renderCountryCondition(condition, humanFriendly) {
+                if (humanFriendly) {
+                    return `Land ${condition.country}`;
+                } else {
+                    return condition.country;
+                }
+            }
+
+            function renderOtherCondition(condition, humanFriendly) {
+                if (humanFriendly) {
+                    return 'Alles';
+                } else {
+                    return '*';
+                }
+            }
+
+            function renderErrorCondition(condition, humanFriendly) {
+                return `<span style="color: red;">Attribute ${condition.error} existiert nicht.</span>`;
+            }
+
+            window.addEventListener('load', () => parse());
+        </script>
+    </head>
+    <body>
+        <textarea id="input" style="width: 500px;height: 200px;">
+Österreich -> 10
+68*, Paket -> 11
+68*, Brief, -> 12
+*, Brief -> 14
+hello
+* -> 13
+        </textarea>
+        <button onclick="parse()">Parse</button>
+        <p>&nbsp;</p>
+        <h2>Regeln</h2>
+        <div id="output"></div>
+        <h2>Regeln - leserlich</h2>
+        <div id="output-human-friendly"></div>
+    </body>
+</html>
