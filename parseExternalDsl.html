@@ -2,35 +2,71 @@
 <html>
     <head>
         <script type="text/javascript">
-            function renderEmptyLine(line) {
-                return `${line.number}:`;
+            class Line {
+                constructor(content, number) {
+                    this.content = content;
+                    this.number = number;
+                }
+                renderLineNumber() {
+                    return `${this.number}:`;
+                }
+                test() {
+                    return false;
+                }
             }
-
-            function renderLine(line, humanFriendly) {
-                const conditions = line.conditions
-                    .map(condition => condition.render(condition, humanFriendly))
-                    .join('<span style="color:red;">, </span>')
-
-                return `
-                    ${line.number}:
-                    <span style="color:green;">${conditions}</span>
-                    <span style="color:red;">-></span>
-                    <span style="color:blue;">${line.account}</span>
-                `;
+            class EmptyLine extends Line {
+                constructor(line) {
+                    super("", line);
+                }
+                render() {
+                    return this.renderLineNumber()
+                }
             }
+            class FaultyLine extends Line {
+                constructor(content, line, error) {
+                    super(content, line);
+                    this.error = error;
+                }
+                render() {
+                    return `
+                    ${this.renderLineNumber()} ${this.content}<br />
+                    <span style="color: red;">&uarr; ${this.error}</span>`
+                }
+            }
+            class Rule extends Line {
+                constructor(content, line, conditions, account) {
+                    super(content, line);
+                    this.conditions = conditions;
+                    this.account = account;
+                }
+                render(humanFriendly) {
+                    const conditions = this.conditions
+                        .map(condition => condition.render(humanFriendly))
+                        .join('<span style="color:red;">, </span>')
 
-            function renderFaultyLine(line) {
-                return `
-                    ${line.number}: ${line.content}<br />
-                    <span style="color: red;">&uarr; ${line.error}</span>
-                `
+                    return `
+                        ${this.renderLineNumber()}
+                        <span style="color:green;">${conditions}</span>
+                        <span style="color:red;">-></span>
+                        <span style="color:blue;">${this.account}</span>
+                    `;
+                }
+                test(element) {
+                    for (let condition of this.conditions) {
+                        if (!condition.matches(element)) {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                }
             }
 
             function parse() {
                 let lineNumber = 0;
                 const dsl = document.getElementById('input').value;
 
-                const lines = dsl
+                const rules = dsl
                     .split("\n")
                     .map(line => ({
                         number: lineNumber++,
@@ -38,34 +74,24 @@
                     }))
                     .map(line => {
                         if (line.content === "") {
-                            return {
-                                ...line,
-                                render: renderEmptyLine,
-                            }
+                            return new EmptyLine(line.number);
                         }
 
                         const sides = line.content.split("->")
                         if (sides.length !== 2) {
-                            return {
-                                ...line,
-                                render: renderFaultyLine,
-                                error: 'Zeile konnte nicht geparst werden',
-                            }
+                            return new FaultyLine(line.content, line.number, 'Zeile konnte nicht geparst werden')
                         }
 
-                        return {
-                            ...line,
-                            conditions: getConditions(sides[0]),
-                            account: sides[1],
-                            render: renderLine,
-                        }
+                        return new Rule(line.content, line.number, getConditions(sides[0]), sides[1].trim())
                     });
 
-                const html = lines.map(line => line.render(line)).join('<br />');
+                const html = rules.map(line => line.render()).join('<br />');
                 document.getElementById('output').innerHTML = html;
 
-                const htmlHumanFriendly = lines.map(line => line.render(line, true)).join('<br />');
+                const htmlHumanFriendly = rules.map(line => line.render(true)).join('<br />');
                 document.getElementById('output-human-friendly').innerHTML = htmlHumanFriendly;
+
+                return rules;
             }
 
             function getConditions(content) {
@@ -80,86 +106,168 @@
                 return [createCondition(content)]
             }
 
+            class LetterCondition {
+                render(humanFriendly) {
+                    if (humanFriendly) {
+                        return `ist ein Brief`;
+                    } else {
+                        return `Brief`
+                    }
+                }
+                matches(element) {
+                    return element.type === 'letter';
+                }
+            }
+            class ParcelCondition {
+                render(humanFriendly) {
+                    if (humanFriendly) {
+                        return `ist ein Paket`;
+                    } else {
+                        return `Paket`
+                    }
+                }
+                matches(element) {
+                    return element.type === 'parcel';
+                }
+            }
+            class CatchAllCondition {
+                render(humanFriendly) {
+                    if (humanFriendly) {
+                        return `Alles`;
+                    } else {
+                        return `*`
+                    }
+                }
+                matches(element) {
+                    return true;
+                }
+            }
+            class PlzCondition {
+                constructor(plzStartsWith) {
+                    this.plzStartsWith = plzStartsWith;
+                }
+                render(humanFriendly) {
+                    if (humanFriendly) {
+                        return `PLZ beginnt mit ${this.plzStartsWith}`;
+                    } else {
+                        return `${this.plzStartsWith}*`;
+                    }
+                }
+                matches(element) {
+                    return element.plz.startsWith(this.plzStartsWith);
+                }
+            }
+            class CountryCondition {
+                constructor(country) {
+                    this.country = country;
+                }
+                render(humanFriendly) {
+                    if (humanFriendly) {
+                        return `Land ${this.country}`;
+                    } else {
+                        return this.country;
+                    }
+                }
+                matches(element) {
+                    return element.country.toLowerCase() === this.country.toLowerCase();
+                }
+            }
+            class ErrorCondition {
+                constructor(error) {
+                    this.error = error;
+                }
+                render(humanFriendly) {
+                    return `<span style="color: red;">Attribute ${this.error} existiert nicht.</span>`;
+                }
+                matches(element) {
+                    return false;
+                }
+            }
+
             function createCondition(condition) {
                 condition = condition.trim()
                 
                 if (condition.toLowerCase() === "brief") {
-                    return {
-                        isLetter: true,
-                        render: renderLetterCondition,
-                    }
+                    return new LetterCondition()
                 } else if (condition.toLowerCase() === "paket") {
-                    return {
-                        isParcel: true,
-                        render: renderParcelCondition,
-                    }
+                    return new ParcelCondition()
                 } else if (/[\d]+\*/.test(condition)) {
-                    return {
-                        plzStartsWith: condition.replaceAll('*', ''),
-                        render: renderPlzCondition,
-                    }
+                    return new PlzCondition(condition.replaceAll('*', ''));
                 } else if (/^[a-zA-ZäöüÄÜÖ]+$/.test(condition)) {
-                    return {
-                        country: condition,
-                        render: renderCountryCondition,
-                    }
+                    return new CountryCondition(condition);
                 } else if (condition === "*") {
-                    return {
-                        render: renderOtherCondition,
-                    }
+                    return new CatchAllCondition();
                 } else {
-                    return {
-                        error: condition,
-                        render: renderErrorCondition,
-                    }
+                    return new ErrorCondition(condition);
                 }
             }
 
-            function renderLetterCondition(condition, humanFriendly) {
-                if (humanFriendly) {
-                    return `ist ein Brief`;
+            function run() {
+                const rules = parse();
+                console.log(rules);
+
+                runTests(rules);
+            }
+
+            function runTests(rules) {
+                const tests = [{
+                    type: 'letter',
+                    country: 'Deutschland',
+                    plz: '68477',
+                    expectedAccount: '12'
+                }, {
+                    type: 'parcel',
+                    country: 'Deutschland',
+                    plz: '96584',
+                    expectedAccount: '13'
+                }, {
+                    type: 'letter',
+                    country: 'Deutschland',
+                    plz: '03753',
+                    expectedAccount: '14'
+                }, {
+                    type: 'letter',
+                    country: 'Österreich',
+                    plz: '03753',
+                    expectedAccount: '10'
+                }, {
+                    type: 'parcel',
+                    country: 'Deutschland',
+                    plz: '68477',
+                    expectedAccount: '11'
+                }, {
+                    type: 'parcel',
+                    country: 'Schweden',
+                    plz: '68477',
+                    expectedAccount: '19'
+                }];
+
+                const html = tests.map(test => runTest(rules, test)).join('<br /><br />');
+                document.getElementById('tests').innerHTML = html;
+            }
+
+            function runTest(rules, test) {
+                const testDescription = `
+                    🕵️‍♀️ Test
+                    Land ${test.country},
+                    PLZ: ${test.plz},
+                    Type: ${test.type === 'letter' ? 'Brief' : 'Paket'},
+                    Erwarteter Account: ${test.expectedAccount}<br />`;
+                const applyingRule = rules.find(rule => rule.test(test))
+
+                if (!applyingRule) {
+                    return `${testDescription} ❌ Test fehlgeschlagen`;
+                }
+
+                const matchedHtml = `- Account: ${applyingRule.account}, Zeile der angewandten Regel: ${applyingRule.number}`;
+                if (test.expectedAccount === applyingRule.account) {
+                    return `${testDescription} ✅ Test erfolgreich ${matchedHtml}`;
                 } else {
-                    return `Brief`
+                    return `${testDescription} ❌ Test fehlgeschlagen ${matchedHtml}`;
                 }
             }
 
-            function renderParcelCondition(condition, humanFriendly) {
-                if (humanFriendly) {
-                    return `ist ein Paket`;
-                } else {
-                    return `Paket`
-                }
-            }
-
-            function renderPlzCondition(condition, humanFriendly) {
-                if (humanFriendly) {
-                    return `PLZ beginnt mit ${condition.plzStartsWith}`;
-                } else {
-                    return `${condition.plzStartsWith}*`;
-                }
-            }
-
-            function renderCountryCondition(condition, humanFriendly) {
-                if (humanFriendly) {
-                    return `Land ${condition.country}`;
-                } else {
-                    return condition.country;
-                }
-            }
-
-            function renderOtherCondition(condition, humanFriendly) {
-                if (humanFriendly) {
-                    return 'Alles';
-                } else {
-                    return '*';
-                }
-            }
-
-            function renderErrorCondition(condition, humanFriendly) {
-                return `<span style="color: red;">Attribute ${condition.error} existiert nicht.</span>`;
-            }
-
-            window.addEventListener('load', () => parse());
+            window.addEventListener('load', () => run());
         </script>
     </head>
     <body>
@@ -171,11 +279,13 @@
 hello
 * -> 13
         </textarea>
-        <button onclick="parse()">Parse</button>
+        <button onclick="run()">Go</button>
         <p>&nbsp;</p>
         <h2>Regeln</h2>
         <div id="output"></div>
         <h2>Regeln - leserlich</h2>
         <div id="output-human-friendly"></div>
+        <h2>Tests</h2>
+        <div id="tests"></div>
     </body>
 </html>
