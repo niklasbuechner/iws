@@ -242,12 +242,13 @@
                     expectedAccount: '19'
                 }];
 
-                const html = tests.map(test => runTest(rules, test)).join('<br /><br />');
+                const html = tests.map(test => runTest(rules, test)).join('');
                 document.getElementById('tests').innerHTML = html;
             }
 
             function runTest(rules, test) {
                 const testDescription = `
+                    <div class="test-result">
                     🕵️‍♀️ Test
                     Land ${test.country},
                     PLZ: ${test.plz},
@@ -256,36 +257,78 @@
                 const applyingRule = rules.find(rule => rule.test(test))
 
                 if (!applyingRule) {
-                    return `${testDescription} ❌ Test fehlgeschlagen`;
+                    return `${testDescription} ❌ Test fehlgeschlagen</div>`;
                 }
 
                 const matchedHtml = `- Account: ${applyingRule.account}, Zeile der angewandten Regel: ${applyingRule.number}`;
                 if (test.expectedAccount === applyingRule.account) {
-                    return `${testDescription} ✅ Test erfolgreich ${matchedHtml}`;
+                    return `${testDescription} ✅ Test erfolgreich ${matchedHtml}</div>`;
                 } else {
-                    return `${testDescription} ❌ Test fehlgeschlagen ${matchedHtml}`;
+                    return `${testDescription} ❌ Test fehlgeschlagen ${matchedHtml}</div>`;
                 }
             }
 
             window.addEventListener('load', () => run());
         </script>
+
+        <style>
+            .rules {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .tests {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .test-result {
+                margin-left: -20px;
+                padding: 5px 20px;
+            }
+            .test-result:nth-child(odd) {
+                background: #F0F0F0;
+            }
+            .test-result:hover {
+                background: #d9eaff;
+            }
+        </style>
     </head>
     <body>
-        <textarea id="input" style="width: 500px;height: 200px;">
+        <div class="rules">
+            <div class="content">
+                <h2>Eingabe</h2>
+                <textarea id="input" style="width: 500px;height: 200px;">
 Österreich -> 10
 68*, Paket -> 11
 68*, Brief, -> 12
 *, Brief -> 14
 hello
 * -> 13
-        </textarea>
-        <button onclick="run()">Go</button>
-        <p>&nbsp;</p>
-        <h2>Regeln</h2>
-        <div id="output"></div>
-        <h2>Regeln - leserlich</h2>
-        <div id="output-human-friendly"></div>
-        <h2>Tests</h2>
-        <div id="tests"></div>
+                </textarea>
+                <button onclick="run()">Testen</button>
+            </div>
+            <div class="content">
+                <h2>Regeln</h2>
+                <div id="output"></div>
+            </div>
+            <div class="content">
+                <h2>Regeln - leserlich</h2>
+                <div id="output-human-friendly"></div>
+            </div>
+        </div>
+        <div class="content tests">
+            <div>
+                <h2>Tests</h2>
+                <div id="tests"></div>
+            </div>
+            <div>
+
+            </div>
+        </div>
     </body>
 </html>
