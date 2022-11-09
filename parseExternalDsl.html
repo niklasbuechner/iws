@@ -60,6 +60,36 @@
 
                     return true;
                 }
+
+                addPlzCondition(startWith) {
+                    this.conditions.append(new PlzCondition(startWith))
+
+                    return this
+                }
+
+                addLetterCondition() {
+                    this.conditions.append(new LetterCondition())
+
+                    return this
+                }
+
+                addParcelCondition() {
+                    this.conditions.append(new ParcelCondition())
+
+                    return this
+                }
+
+                addCountryCondition(country) {
+                    this.conditions.append(new CountryCondition(country))
+
+                    return this
+                }
+
+                addCatchAllCondition() {
+                    this.conditions.append(new CatchAllCondition())
+
+                    return this
+                }
             }
 
             function parse() {
@@ -204,9 +234,21 @@
 
             function run() {
                 const rules = parse();
-                console.log(rules);
+                // const rules = [
+                //     createRule(15)
+                //         .addPlzCondition(68)
+                //         .addLetterCondition(),
+                //     createRule(25)
+                //         .addParcelCondition()
+                //         .addCountryCondition('Deutschland'),
+                // ];
+
 
                 runTests(rules);
+            }
+
+            function createRule(account) {
+                return new Rule('', '', [], account)
             }
 
             function runTests(rules) {
