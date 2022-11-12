@@ -21,11 +21,5 @@ function parse() {
             return new Rule(line.content, line.number, getConditions(sides[0]), sides[1].trim())
         });
 
-    const html = rules.map(line => line.render()).join('<br />');
-    document.getElementById('output').innerHTML = html;
-
-    const htmlHumanFriendly = rules.map(line => line.render(true)).join('<br />');
-    document.getElementById('output-human-friendly').innerHTML = htmlHumanFriendly;
-
     return rules;
 }

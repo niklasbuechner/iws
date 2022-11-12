@@ -31,6 +31,16 @@ function runTests(rules) {
         expectedAccount: '19'
     }];
 
+    if (rules.length > 0 && typeof rules[0] === 'function') {
+        rules = getInternalDslRules(rules)
+    }
+
+    const ruleHtml = rules.map(line => line.render()).join('<br />');
+    document.getElementById('output').innerHTML = ruleHtml;
+
+    const htmlHumanFriendly = rules.map(line => line.render(true)).join('<br />');
+    document.getElementById('output-human-friendly').innerHTML = htmlHumanFriendly;
+
     const html = tests.map(test => runTest(rules, test)).join('');
     document.getElementById('tests').innerHTML = html;
 }

@@ -5,20 +5,37 @@
         <script type="text/javascript" src="./rule.js"></script>
         <script type="text/javascript" src="./ruleEngine.js"></script>
         <script type="text/javascript" src="./parse.js"></script>
+        <script type="text/javascript" src="./internalDsl.js"></script>
         <script type="text/javascript">
             function run() {
-                const rules = parse();
-                // const rules = [
-                //     createRule(15)
-                //         .addPlzCondition(68)
-                //         .addLetterCondition(),
-                //     createRule(25)
-                //         .addParcelCondition()
-                //         .addCountryCondition('Deutschland'),
-                // ];
+                const externalDslRules = parse();
+                
+                const internalDslRules = [
+                    rule => {
+                        country = "Österreich"
+                        account = 10
+                    },
+                    rule => {
+                        plz = 68
+                        isParcel
+                        account = 11
+                    },
+                    rule => {
+                        plz = 68
+                        isLetter
+                        account = 12
+                    },
+                    rule => {
+                        isLetter
+                        account = 14
+                    },
+                    rule => {
+                        account = 13
+                    }
+                ]
 
 
-                runTests(rules);
+                runTests(internalDslRules);
             }
 
             window.addEventListener('load', () => run());

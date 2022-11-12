@@ -49,6 +49,7 @@ class Rule extends Line {
     }
     test(element) {
         for (let condition of this.conditions) {
+            
             if (!condition.matches(element)) {
                 return false;
             }
@@ -58,31 +59,31 @@ class Rule extends Line {
     }
 
     addPlzCondition(startWith) {
-        this.conditions.append(new PlzCondition(startWith))
+        this.conditions.push(new PlzCondition(startWith))
 
         return this
     }
 
     addLetterCondition() {
-        this.conditions.append(new LetterCondition())
+        this.conditions.push(new LetterCondition())
 
         return this
     }
 
     addParcelCondition() {
-        this.conditions.append(new ParcelCondition())
+        this.conditions.push(new ParcelCondition())
 
         return this
     }
 
     addCountryCondition(country) {
-        this.conditions.append(new CountryCondition(country))
+        this.conditions.push(new CountryCondition(country))
 
         return this
     }
 
     addCatchAllCondition() {
-        this.conditions.append(new CatchAllCondition())
+        this.conditions.push(new CatchAllCondition())
 
         return this
     }
