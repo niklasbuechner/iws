@@ -11,27 +11,27 @@
                 const externalDslRules = parse();
                 
                 const internalDslRules = [
-                    rule => {
-                        country = "Österreich"
+                    rule(
+                        country = "Österreich",
                         account = 10
-                    },
-                    rule => {
-                        plz = 68
-                        isParcel
+                    ),
+                    rule(
+                        plz = 68,
+                        isParcel,
                         account = 11
-                    },
-                    rule => {
-                        plz = 68
-                        isLetter
+                    ),
+                    rule(
+                        plz = 68,
+                        isLetter,
                         account = 12
-                    },
-                    rule => {
-                        isLetter
+                    ),
+                    rule(
+                        isLetter,
                         account = 14
-                    },
-                    rule => {
-                        account = 13
-                    }
+                    ),
+                    rule(
+                        account = 13,
+                    )
                 ]
 
 

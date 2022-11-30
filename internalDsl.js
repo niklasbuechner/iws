@@ -1,4 +1,4 @@
-let currentRule = null
+let currentRule = createRule()
 let rules = [];
 
 Object.defineProperty(window, 'plz', {
@@ -49,4 +49,11 @@ function getInternalDslRules(ruleDefinitions) {
 
         return rule
     });
+}
+
+function rule() {
+    const current = currentRule;
+    currentRule = createRule();
+
+    return current;
 }
