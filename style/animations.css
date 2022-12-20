@@ -1,0 +1,272 @@
+@keyframes moveParcelTo10 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(728.50px, -926.61px);
+        ;
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(728.50px, -926.61px);
+        ;
+        opacity: 0;
+    }
+}
+
+@keyframes moveParcelTo11 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(1364.97px, -1030.78px);
+        ;
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(1364.97px, -1030.78px);
+        ;
+        opacity: 0;
+    }
+}
+
+@keyframes moveParcelTo12 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(1955.21px, -926.61px);
+        ;
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(1955.21px, -926.61px);
+        ;
+        opacity: 0;
+    }
+}
+
+@keyframes moveParcelTo13 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(2397.91px, -614.11px);
+        ;
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(2397.91px, -614.11px);
+        ;
+        opacity: 0;
+    }
+}
+
+@keyframes moveParcelTo14 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(2642.20px, -197.44px);
+        ;
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(2642.20px, -197.44px);
+        ;
+        opacity: 0;
+    }
+}
+
+@keyframes moveParcelTo15 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(2672.10px, 219.22px);
+        ;
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(2672.10px, 219.22px);
+        ;
+        opacity: 0;
+    }
+}
+
+@keyframes moveParcelTo16 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(2566.34px, 635.89px);
+        ;
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(2566.34px, 635.89px);
+        ;
+        opacity: 0;
+    }
+}
+
+@keyframes moveParcelTo17 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(2350.39px, 1052.58px);
+        ;
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(2350.39px, 1052.58px);
+        ;
+        opacity: 0;
+    }
+}
+
+@keyframes moveParcelTo18 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(1847.56px, 1365.06px);
+        ;
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(1847.56px, 1365.06px);
+        ;
+        opacity: 0;
+    }
+}
+
+@keyframes moveParcelTo19 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(1118.35px, 1365.06px);
+        ;
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(1118.35px, 1365.06px);
+        ;
+        opacity: 0;
+    }
+}
+
+@keyframes moveParcelTo20 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(611.26px, 1052.56px);
+        ;
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(611.26px, 1052.56px);
+        ;
+        opacity: 0;
+    }
+}
+
+@keyframes moveParcelTo10 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(728.5px, -926.612px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(728.5px, -926.612px);
+        opacity: 0;
+    }
+}
+
+@keyframes moveParcelTo11 {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translate(1365px, -1031px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(1365px, -1031px);
+        opacity: 0;
+    }
+}
+
+@keyframes moveForward {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(416.666px);
+    }
+}
+
+@keyframes makeMainParcel {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(1060px);
+    }
+}
+
+@keyframes hideInformation {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
