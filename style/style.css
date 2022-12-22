@@ -27,14 +27,30 @@ h1 {
 }
 
 .test-result {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: 'content button';
     margin-left: -20px;
     padding: 5px 20px;
 }
-.test-result:hover {
+.test-result:hover,
+.test-result:nth-child(odd):hover {
     background: #d9eaff;
+}
+.test-result.successful:hover,
+.test-result.successful:nth-child(odd):hover {
+    background: rgb(176, 236, 176);
+}
+
+.test-result.failed:hover,
+.test-result.failed:nth-child(odd):hover {
+    background: #f5c1bf;
 }
 .test-result:nth-child(odd) {
     background: #F0F0F0;
+}
+.test-result:nth-child(odd):hover {
+    background: #d9eaff;
 }
 .test-result.successful {
     background: rgb(237, 249, 237);
@@ -49,6 +65,18 @@ h1 {
     background: #ffdad9;
 }
 
+.test-result-content {
+    grid-area: content;
+    align-self: center;
+}
+
+.execute-single-test {
+    grid-area: button;
+    padding: 0;
+    margin: 0;
+    align-self: center;
+}
+
 button {
     margin: 10px;
     background-color: #4e8df4;
@@ -59,6 +87,16 @@ button {
     font-size: 10pt;
     padding: 15px
 }
-button:hover {
+button:hover, input[type=button]:hover {
     background-color: #8ab2f2;
+}
+
+input[type=button] {
+    background-color: #4e8df4;
+    border: 0;
+    border-radius: 5px;
+    font-weight: bolder;
+    color: white;
+    font-size: 10pt;
+    padding: 5px
 }

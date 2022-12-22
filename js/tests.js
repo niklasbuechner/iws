@@ -10,23 +10,28 @@ const countriesTranslations = {
 };
 
 function renderTests(tests) {
-    const testHtml = tests.map(test => {
+    const testHtml = tests.map((test, index) => {
         const testResultHtml = getTestHtml(test.result)
 
         const html = `
             <div class="test-result ${testResultHtml.class}">
-                🕵️‍♀️
-                Land ${countriesTranslations[test.country] ?? test.country},
-                PLZ: ${test.plz},
-                Type: ${test.type === 'letter' ? 'Brief' : 'Paket'},
-                Erwarteter Account: ${test.expectedAccount}
-                <br />${testResultHtml.html}
-                <!--
-                    Render an invisible emoji here to suppress the width change during rendering.
-                    Yes, I know that this is an ugly hack, but I don't want to deal with the CSS
-                    right now.
-                -->
-                <span style="opacity:0 ">✅</span>
+                <div class="test-result-content">
+                    🕵️‍♀️
+                    Land ${countriesTranslations[test.country] ?? test.country},
+                    PLZ: ${test.plz},
+                    Type: ${test.type === 'letter' ? 'Brief' : 'Paket'},
+                    Erwarteter Account: ${test.expectedAccount}
+                    <br />${testResultHtml.html}
+                    <!--
+                        Render an invisible emoji here to suppress the height change during rendering.
+                        Yes, I know that this is an ugly hack, but I don't want to deal with the CSS
+                        right now.
+                    -->
+                    <span style="opacity:0 ">✅</span>
+                </div>
+                <div class="execute-single-test">
+                    <input type="button" value="Testen" onClick='executeSingleTest(${index})' />
+                </div>
             </div>`
 
         return html;
@@ -61,12 +66,7 @@ async function runTests(tests, getAccount) {
     setTest(tests[0]);
 
     for (let i = 0; i < tests.length; i += 1) {
-        setTest(tests[i]);
-        const account = getAccount(tests[i]);
-        tests[i].result = account === tests[i].expectedAccount;
-
-        await toggleAnimation(account, tests[i].result, tests[(i + 1) % tests.length])
-        renderTests(tests)
+        await executeSingleTest(i, tests[(i + 1) % tests.length])
     }
 }
 
@@ -78,6 +78,19 @@ function setTest(test) {
     document.getElementById('express').textContent = test.isExpress ? 'Express' : '';
     document.getElementById('bulky').textContent = test.isBulky ? 'Sperrgut' : '';
     document.getElementById('dangerous').textContent = test.isDangerous ? 'Gefahrengut' : '';
+}
+
+async function executeSingleTest(index, nextTest = null) {
+    // TODO: remove dependency on global state... This is ugly.
+    delete tests[index].result;
+    renderTests(tests);
+
+    setTest(tests[index]);
+    const account = getAccount(tests[index]);
+    tests[index].result = account === tests[index].expectedAccount;
+
+    await toggleAnimation(account, tests[index].result, nextTest ?? tests[index])
+    renderTests(tests)
 }
 
 /**

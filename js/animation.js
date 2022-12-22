@@ -5,7 +5,7 @@ function animateAll(accounts = [], animationLengthInSeconds = 1) {
     }
 }
 
-function toggleAnimation(to, successful, nextTest, animationLengthInSeconds = 1) {
+function toggleAnimation(to, successful, nextTest = null, animationLengthInSeconds = 1) {
     return new Promise(resolve => {
         const singleAnimationLength = animationLengthInSeconds * 7 / 8;
         const timeoutLength = singleAnimationLength * 1000;
@@ -18,7 +18,9 @@ function toggleAnimation(to, successful, nextTest, animationLengthInSeconds = 1)
         document.getElementById("Paket-2").style.animation = `moveForward ${singleAnimationLength}s ease-in-out`;
 
         setTimeout(() => {
-            setTest(nextTest);
+            if (nextTest) {
+                setTest(nextTest);
+            }
             document.getElementById("Infoanzeige").style.animation = `hideInformation ${singleAnimationLength/2}s ease-in-out reverse`;
         }, timeoutLength / 2 + 20)
 
