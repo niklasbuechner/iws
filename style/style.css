@@ -2,6 +2,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+h1 {
+    margin-top: 50px;
+}
+
 .header {
     border-bottom: 1px solid lightgray;
     padding: 20px;
@@ -15,6 +19,11 @@
 
 #animation svg {
     max-height: 500px;
+}
+
+#tests {
+    /** We don't want the test evaluation to stick to the bottom. */
+    margin-bottom: 20vh;
 }
 
 .test-result {

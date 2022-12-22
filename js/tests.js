@@ -9,7 +9,13 @@ function renderTests(tests) {
                 PLZ: ${test.plz},
                 Type: ${test.type === 'letter' ? 'Brief' : 'Paket'},
                 Erwarteter Account: ${test.expectedAccount}
-                <br />${testResultHtml.html} &nbsp;
+                <br />${testResultHtml.html}
+                <!--
+                    Render an invisible emoji here to suppress the width change during rendering.
+                    Yes, I know that this is an ugly hack, but I don't want to deal with the CSS
+                    right now.
+                -->
+                <span style="opacity:0 ">✅</span>
             </div>`
 
         return html;

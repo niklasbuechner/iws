@@ -6,25 +6,23 @@
         <link rel="stylesheet" href="./style/animations.css" />
     </head>
     <script>
-        let tests = [{
-            type: 'letter',
-            country: 'Deutschland',
-            plz: '68477',
-            expectedAccount: '12'
-        }, {
-            type: 'parcel',
-            country: 'Deutschland',
-            plz: '96584',
-            expectedAccount: '13'
-        }, {
-            type: 'letter',
-            country: 'Deutschland',
-            plz: '03753',
-            expectedAccount: '14'
-        }];
+        /**
+         * Definition of a letter or parcel
+         * @typedef {LetterOrParcel}
+         * @property {string} type - either 'letter' or 'parcel'
+         * @property {string} country - e.g. 'Germany'
+         * @property {string} plz - e.g. '64832'
+         **/
 
-        function getAccount(test) {
-            return test.expectedAccount == 14? 10 : test.expectedAccount;
+        /**
+         * This function determines the truck numbers for every letter and parcel it is handed.
+         * 
+         * TODO: Needs implementation.
+         * 
+         * @param {LetterOrParcel} letterOrParcel - The letter or parcel to route. For the exact spec, see comment above.
+         **/
+        function getAccount(letterOrParcel) {
+            return letterOrParcel.expectedAccount == 20? 10 : letterOrParcel.expectedAccount;
         }
     </script>
     <body>
@@ -32,8 +30,20 @@
             <div class="content">Aufgabe 1</div>
         </div>
         <div class="content">
-            <h1>Aufgabe</h1>
-            <p>Hier sollst du folgendes machen:</p>
+            <p>
+                Herzlich willkommen bei unserer neuen Spedition. Du bist unser Programmierer, der dafür zuständig ist, ein System zu schreiben,
+                das unsere Briefe und Pakete an die richtigen LKWs übergibt. Dazu musst du dieses HTML-Dokument öffnen und die Funktion
+                <i>getAccount</i> implementieren. Danach kannst du das Dokument speichern, diese Seite neu laden und über den “Testen”-Button
+                sicherstellen, dass alle Pakete richtig verschickt wurden. Viel Erfolg!
+            </p>
+            <p>
+                Bitte passe das System so an, dass es:
+                <ol>
+                    <li>Alle Briefe für Deutschland an LKW 10 liefert.</li>
+                    <li>Alle Pakete für Deutschland an LKW 11 liefert.</li>
+                    <li>Alle anderen Pakete zurück an den Absender schickt. Das stellt LKW 20 dar.</li>
+                </ol>
+            </p>
             <h1>Visualisierung</h1>
             <div id="animation"></div>
             <h1>Tests</h1>
@@ -47,6 +57,23 @@
         <script src="./js/tests.js"></script>
         <script src="./js/animation.js"></script>
         <script>
+            let tests = [{
+                type: 'letter',
+                country: 'Germany',
+                plz: '68477',
+                expectedAccount: '10'
+            }, {
+                type: 'parcel',
+                country: 'Germany',
+                plz: '96584',
+                expectedAccount: '11'
+            }, {
+                type: 'letter',
+                country: 'England',
+                plz: '03753',
+                expectedAccount: '20'
+            }];
+
             window.addEventListener('load', () => {
                 setupAnimationInElement('animation');
                 renderTests(tests);
