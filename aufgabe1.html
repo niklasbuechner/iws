@@ -2,65 +2,9 @@
 <html>
     <head>
         <title>Aufgabe 1</title>
+        <link rel="stylesheet" href="./style/style.css" />
         <link rel="stylesheet" href="./style/animations.css" />
     </head>
-    <style>
-        * {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        .header {
-            border-bottom: 1px solid lightgray;
-            padding: 20px;
-            font-size: 20pt;
-        }
-
-        .content {
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        #animation svg {
-            max-height: 500px;
-        }
-
-        .test-result {
-            margin-left: -20px;
-            padding: 5px 20px;
-        }
-        .test-result:hover {
-            background: #d9eaff;
-        }
-        .test-result:nth-child(odd) {
-            background: #F0F0F0;
-        }
-        .test-result.successful {
-            background: rgb(237, 249, 237);
-        }
-        .test-result.successful:nth-child(odd) {
-            background: rgb(209, 235, 209);
-        }
-        .test-result.failed {
-            background: #ffe8e7;
-        }
-        .test-result.failed:nth-child(odd) {
-            background: #ffdad9;
-        }
-
-        button {
-            margin: 10px;
-            background-color: #4e8df4;
-            border: 0;
-            border-radius: 5px;
-            font-weight: bolder;
-            color: white;
-            font-size: 10pt;
-            padding: 15px
-        }
-        button:hover {
-            background-color: #8ab2f2;
-        }
-    </style>
     <script>
         let tests = [{
             type: 'letter',
@@ -79,42 +23,6 @@
             expectedAccount: '14'
         }];
 
-        function renderTests(tests) {
-            const testHtml = tests.map(test => {
-                const testResultHtml = getTestHtml(test.result)
-
-                const html = `
-                    <div class="test-result ${testResultHtml.class}">
-                        🕵️‍♀️ Test
-                        Land ${test.country},
-                        PLZ: ${test.plz},
-                        Type: ${test.type === 'letter' ? 'Brief' : 'Paket'},
-                        Erwarteter Account: ${test.expectedAccount}
-                        <br />${testResultHtml.html} &nbsp;
-                    </div>`
-
-                return html;
-            }).join('\n');
-
-            document.getElementById('tests').innerHTML = testHtml;
-        }
-
-        function getTestHtml(success) {
-            if (success === true) {
-                return {
-                    html: `✅ Test successful`,
-                    class: 'successful',
-                };
-            } else if (success === false) {
-                return {
-                    html: `❌ Test failed`,
-                    class: 'failed',
-                };
-            } else {
-                return { html: '', class: '' }
-            }
-        }
-
         function getAccount(test) {
             return test.expectedAccount == 14? 10 : test.expectedAccount;
         }
@@ -124,6 +32,8 @@
             <div class="content">Aufgabe 1</div>
         </div>
         <div class="content">
+            <h1>Aufgabe</h1>
+            <p>Hier sollst du folgendes machen:</p>
             <h1>Visualisierung</h1>
             <div id="animation"></div>
             <h1>Tests</h1>
@@ -134,27 +44,13 @@
             </div>
             <div id="tests"></div>
         </div>
+        <script src="./js/tests.js"></script>
         <script src="./js/animation.js"></script>
         <script>
             window.addEventListener('load', () => {
                 setupAnimationInElement('animation');
                 renderTests(tests);
-                document.getElementById('runTests').addEventListener('click', async () => {
-                    tests = tests.map(test => {
-                        delete test.result;
-
-                        return test;
-                    })
-                    renderTests(tests);
-
-                    for (let i = 0; i < tests.length; i += 1) {
-                        const account = getAccount(tests[i]);
-                        tests[i].result = account === tests[i].expectedAccount;
-
-                        await toggleAnimation(account)
-                        renderTests(tests)
-                    }
-                })
+                document.getElementById('runTests').addEventListener('click', () => runTests(tests, getAccount))
             })
         </script>
     </body>
