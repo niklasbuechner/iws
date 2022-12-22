@@ -77,6 +77,7 @@
             window.addEventListener('load', () => {
                 setupAnimationInElement('animation');
                 renderTests(tests);
+                setTest(tests[0]);
                 document.getElementById('runTests').addEventListener('click', () => runTests(tests, getAccount))
             })
         </script>

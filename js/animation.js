@@ -5,24 +5,22 @@ function animateAll(accounts = [], animationLengthInSeconds = 1) {
     }
 }
 
-function toggleAnimation(to = 10, successful = true, animationLengthInSeconds = 1) {
+function toggleAnimation(to, successful, nextTest, animationLengthInSeconds = 1) {
     return new Promise(resolve => {
         const singleAnimationLength = animationLengthInSeconds * 7 / 8;
-        const timeoutLength = animationLengthInSeconds * 7 / 8 * 1000;
+        const timeoutLength = singleAnimationLength * 1000;
 
         document.getElementById("animationSvg").style.animation = `${successful ? '': 'in'}correctAssignment ${singleAnimationLength}s ease-in-out`;
         document.getElementById("Paket-1").style.animation = `moveParcelTo${to} ${singleAnimationLength}s ease-in-out`;
-        document.getElementById("Infoanzeige").style.animation = `hideInformation ${singleAnimationLength/2}s ease-in-out`;
+        document.getElementById("Infoanzeige").style.animation = `hideInformation ${singleAnimationLength/2}s ease-in-out forwards`;
         document.getElementById("Paket-4").style.animation = `makeMainParcel ${singleAnimationLength}s ease-in-out`;
         document.getElementById("Paket-3").style.animation = `moveForward ${singleAnimationLength}s ease-in-out`;
         document.getElementById("Paket-2").style.animation = `moveForward ${singleAnimationLength}s ease-in-out`;
 
         setTimeout(() => {
-            // document.getElementById("letterType").textContent = "Paket"
-            // document.getElementById("city").textContent = "68766 Hockenheim"
-            // document.getElementById("country").textContent = "Österreich"
-            document.getElementById("Infoanzeige").style.animation = `hideInformation ${singleAnimationLength}s ease-in reverse`;
-        }, timeoutLength)
+            setTest(nextTest);
+            document.getElementById("Infoanzeige").style.animation = `hideInformation ${singleAnimationLength/2}s ease-in-out reverse`;
+        }, timeoutLength / 2 + 20)
 
         setTimeout(() => {
             document.getElementById("animationSvg").style.animation = "";
@@ -42,22 +40,6 @@ function setupAnimationInElement(id) {
     <svg id="animationSvg" width="100%" viewBox="0 0 5334 3000" version="1.1" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
         style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
-        <g id="Paket-4" serif:id="Paket 4">
-            <rect x="833.333" y="1145.83" width="312.5" height="312.5" style="fill:#f4c54e;" />
-            <rect x="948.828" y="1145.83" width="81.51" height="92.345" style="fill:#ff9500;" />
-        </g>
-        <g id="Paket-3" serif:id="Paket 3">
-            <rect x="416.667" y="1145.83" width="312.5" height="312.5" style="fill:#f4c54e;" />
-            <rect x="532.162" y="1145.83" width="81.51" height="92.345" style="fill:#ff9500;" />
-        </g>
-        <g id="Paket-2" serif:id="Paket 2">
-            <rect x="0" y="1145.83" width="312.5" height="312.5" style="fill:#f4c54e;" />
-            <rect x="115.495" y="1145.83" width="81.51" height="92.345" style="fill:#ff9500;" />
-        </g>
-        <g id="Paket-1" serif:id="Paket 1">
-            <rect x="1893.41" y="1145.83" width="312.5" height="312.5" style="fill:#f4c54e;" />
-            <rect x="2008.91" y="1145.83" width="81.51" height="92.345" style="fill:#ff9500;" />
-        </g>
         <g id="Belt">
             <rect x="329.43" y="1530.34" width="338.689" height="70.877" style="fill:#939393;" />
             <rect x="731.997" y="1526.91" width="338.689" height="70.877" style="fill:#939393;" />
@@ -74,18 +56,20 @@ function setupAnimationInElement(id) {
         <g id="Infoanzeige">
             <rect x="2421.75" y="933.241" width="903.478" height="714.452"
                 style="fill:none;stroke:#000;stroke-width:12.5px;" />
-            <g transform="matrix(6.07735,0,0,6.07735,222.974,-140.603)"><text x="369.762px" y="195.92px"
-                    style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;">Brief</text><text x="369.762px"
+            <g transform="matrix(6.07735,0,0,6.07735,222.974,-140.603)"><text id="parcelType" x="369.762px" y="195.92px"
+                    style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;">Brief</text><text id="city" x="369.762px"
                     y="210.32px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;">64285 Darmstadt</text>
-                <text x="369.762px" y="224.72px"
+                <text id="country" x="369.762px" y="224.72px"
                     style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;">Deutschland</text><text
-                    x="369.762px" y="239.12px"
-                    style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;">Faktor</text><text x="369.762px"
-                    y="253.52px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;">Faktor</text><text
+                    id="weight" x="369.762px" y="239.12px"
+                    style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;">Faktor</text><text id="express" x="369.762px"
+                    y="253.52px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;">Faktor</text><text id="bulky"
                     x="369.762px" y="267.92px"
-                    style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;">Faktor</text><text x="369.762px"
+                    style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;">Faktor</text><text id="dangerous" x="369.762px"
                     y="282.32px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;">Faktor</text>
             </g>
+            <path d="M2264.12,1107.41l116.541,-157.561" style="fill:none;stroke:#000;stroke-width:12.5px;" />
+            <path d="M2273.5,1471.4l101.162,142.969" style="fill:none;stroke:#000;stroke-width:12.5px;" />
         </g>
         <g id="LKW-12" serif:id="LKW 12">
             <rect x="3848.62" y="219.218" width="280.889" height="197.58" style="fill:#4e8df4;" />
@@ -186,8 +170,22 @@ function setupAnimationInElement(id) {
             <circle cx="3223.18" cy="2794.14" r="36.449" style="fill:#6c6c6c;" /><text x="3071.32px" y="2644.3px"
                 style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:116.636px;fill:#fff;">19</text>
         </g>
-        <path d="M2264.12,1107.41l116.541,-157.561" style="fill:none;stroke:#000;stroke-width:12.5px;" />
-        <path d="M2273.5,1471.4l101.162,142.969" style="fill:none;stroke:#000;stroke-width:12.5px;" />
+        <g id="Paket-4" serif:id="Paket 4">
+            <rect x="833.333" y="1145.83" width="312.5" height="312.5" style="fill:#f4c54e;" />
+            <rect x="948.828" y="1145.83" width="81.51" height="92.345" style="fill:#ff9500;" />
+        </g>
+        <g id="Paket-3" serif:id="Paket 3">
+            <rect x="416.667" y="1145.83" width="312.5" height="312.5" style="fill:#f4c54e;" />
+            <rect x="532.162" y="1145.83" width="81.51" height="92.345" style="fill:#ff9500;" />
+        </g>
+        <g id="Paket-2" serif:id="Paket 2">
+            <rect x="0" y="1145.83" width="312.5" height="312.5" style="fill:#f4c54e;" />
+            <rect x="115.495" y="1145.83" width="81.51" height="92.345" style="fill:#ff9500;" />
+        </g>
+        <g id="Paket-1" serif:id="Paket 1">
+            <rect x="1893.41" y="1145.83" width="312.5" height="312.5" style="fill:#f4c54e;" />
+            <rect x="2008.91" y="1145.83" width="81.51" height="92.345" style="fill:#ff9500;" />
+        </g>
     </svg>
     `;
 }
