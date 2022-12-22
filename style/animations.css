@@ -270,3 +270,33 @@
         opacity: 0;
     }
 }
+
+@keyframes correctAssignment {
+    0% {
+        background-color: #fff;
+    }
+    20% {
+        background-color: rgb(209, 235, 209);
+    }
+    80% {
+        background-color: rgb(209, 235, 209);
+    }
+    100% {
+        background-color: #fff;
+    }
+}
+
+@keyframes incorrectAssignment {
+    0% {
+        background-color: #fff;
+    }
+    20% {
+        background-color: #ffdad9;
+    }
+    80% {
+        background-color: #ffdad9;
+    }
+    100% {
+        background-color: #fff;
+    }
+}

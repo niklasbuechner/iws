@@ -5,11 +5,12 @@ function animateAll(accounts = [], animationLengthInSeconds = 1) {
     }
 }
 
-function toggleAnimation(to = 10, animationLengthInSeconds = 1) {
+function toggleAnimation(to = 10, successful = true, animationLengthInSeconds = 1) {
     return new Promise(resolve => {
         const singleAnimationLength = animationLengthInSeconds * 7 / 8;
         const timeoutLength = animationLengthInSeconds * 7 / 8 * 1000;
 
+        document.getElementById("animationSvg").style.animation = `${successful ? '': 'in'}correctAssignment ${singleAnimationLength}s ease-in-out`;
         document.getElementById("Paket-1").style.animation = `moveParcelTo${to} ${singleAnimationLength}s ease-in-out`;
         document.getElementById("Infoanzeige").style.animation = `hideInformation ${singleAnimationLength/2}s ease-in-out`;
         document.getElementById("Paket-4").style.animation = `makeMainParcel ${singleAnimationLength}s ease-in-out`;
@@ -24,6 +25,7 @@ function toggleAnimation(to = 10, animationLengthInSeconds = 1) {
         }, timeoutLength)
 
         setTimeout(() => {
+            document.getElementById("animationSvg").style.animation = "";
             document.getElementById("Paket-1").style.animation = "";
             document.getElementById("Paket-2").style.animation = "";
             document.getElementById("Paket-3").style.animation = "";
@@ -37,7 +39,7 @@ function toggleAnimation(to = 10, animationLengthInSeconds = 1) {
 
 function setupAnimationInElement(id) {
     document.getElementById(id).innerHTML = `
-    <svg width="100%" viewBox="0 0 5334 3000" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    <svg id="animationSvg" width="100%" viewBox="0 0 5334 3000" version="1.1" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
         style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
         <g id="Paket-4" serif:id="Paket 4">

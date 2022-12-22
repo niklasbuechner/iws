@@ -52,7 +52,7 @@ async function runTests(tests, getAccount) {
         const account = getAccount(tests[i]);
         tests[i].result = account === tests[i].expectedAccount;
 
-        await toggleAnimation(account)
+        await toggleAnimation(account, tests[i].result)
         renderTests(tests)
     }
 }
