@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Aufgabe 10</title>
+        <link rel="stylesheet" href="./style/style.css" />
+        <link rel="stylesheet" href="./style/animations.css" />
+    </head>
+    <script>
+        /**
+         * Define the rule set of the following internal DSL.
+         * The necessary conditions for defining the parameters are located in rule.js
+         * These steps are necessary for creating the rule set
+         *  1. Creat rule set
+         *  2. Add rule
+         *  2. Add conditions for letter, parcel, country and catchAll to the rule
+         * For more information visit the cheat sheet.
+         * */
+        let rules = [];
+        
+        function rule(account) {}
+        function letter() {}
+        function parcel() {}
+        function country(country) {}
+        function catchAll() {}
+
+        function createInternalDsl() {
+            rule(1);
+                letter();
+                country("Deutschland");
+            rule(4);
+                parcel();
+                country("Deutschland");
+            rule(20);
+                catchAll();
+        }
+
+        /**
+         * Function to evaluate the rules for a delivery and return the correct account.
+         * 
+         * @param {Delivery} delivery
+         * @returns {string} account.
+         */
+        function getAccountFromRules(delivery) {
+            return "20";
+        }
+    </script>
+    <body>
+        <div class="header">
+            <div class="content">
+                <div class="title">
+                    Aufgabe 10
+                </div>
+                <nav>
+                    <span><a href="./cheatsheet.html">Cheat Sheet</a></span>
+                    -
+                    Aufgabe
+                    <span><a href="./aufgabe1.html">1</a></span>
+                    <span><a href="./aufgabe2.html">2</a></span>
+                    <span><a href="./aufgabe3.html">3</a></span>
+                    <span><a href="./aufgabe4.html">4</a></span>
+                    <span><a href="./aufgabe5.html">5</a></span>
+                    <span><a href="./aufgabe6.html">6</a></span>
+                    <span><a href="./aufgabe7.html">7</a></span>
+                    <span><a href="./aufgabe8.html">8</a></span>
+                    <span><a href="./aufgabe9.html">9</a></span>
+                    <span>10</span>
+                    <span><a href="./aufgabe11.html">11</a></span>
+                    <span><a href="./aufgabe12.html">12</a></span>
+                </nav>
+            </div>
+        </div>
+        <div class="content">
+            <p>
+                Bitte erstelle deine eigene interne DSL.
+            </p>
+            <p>
+                Bitte passe das System so an, dass es:
+                <ol>
+                    <ol>
+                        <li>Alle Briefe nach Deutschland zum Warenausgang 1.</li>
+                        <li>Alle Pakete nach Deutschland zum Warenausgang 4.</li>
+                        <li>Alle anderen Briefe und Pakete gehen zurück an den Absender. Dies wird durch Warenausgang 20 repräsentiert.</li>
+                    </ol>
+                </ol>
+            </p>
+            <h1>Visualisierung</h1>
+            <div id="animation"></div>
+            <h1>Tests</h1>
+            <div style="text-align: right;">
+                <button id="runTests">
+                    Alle Tests ausführen
+                </button>
+            </div>
+            <div id="tests"></div>
+        </div>
+        <script src="./js/tests.js"></script>
+        <script src="./js/animation.js"></script>
+        <script src="./js/conditions.js"></script>
+        <script src="./js/rule.js"></script>
+        <script src="js/test/aufgabe10.test.js"></script>
+    </body>
+</html>

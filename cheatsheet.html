@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cheat Sheet</title>
+    <link rel="stylesheet" href="./style/style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="content">
+        <div class="title">Cheat Sheet</div>
+        <nav>
+          Cheat Sheet - Aufgabe
+          <span><a href="./aufgabe1.html">1</a></span>
+          <span><a href="./aufgabe2.html">2</a></span>
+          <span><a href="./aufgabe3.html">3</a></span>
+          <span><a href="./aufgabe4.html">4</a></span>
+          <span><a href="./aufgabe5.html">5</a></span>
+          <span><a href="./aufgabe6.html">6</a></span>
+          <span><a href="./aufgabe7.html">7</a></span>
+          <span><a href="./aufgabe8.html">8</a></span>
+          <span><a href="./aufgabe9.html">9</a></span>
+          <span><a href="./aufgabe10.html">10</a></span>
+          <span><a href="./aufgabe11.html">11</a></span>
+          <span><a href="./aufgabe12.html">12</a></span>
+        </nav>
+      </div>
+    </div>
+    <div class="content">
+      <div class="general-information">
+        <h2>Länder</h2>
+        <ol>
+          <li>Deutschland</li>
+        </ol>
+        <p class="exercise-rules-heading">EU Länder:</p>
+        <ol class="exercise-rules" start="2">
+          <li>Österreich</li>
+        </ol>
+        <p class="exercise-rules-heading">EU-fremde Länder:</p>
+        <ol class="exercise-rules" start="3">
+          <li>England</li>
+          <li>USA</li>
+        </ol>
+      </div>
+      <h1>Reine JavaScript Aufgaben (A1 bis A3)</h1>
+      <h2>Geschäftsregeln</h2>
+      <p>
+        Je nach Aufgabe unterscheiden sich unsere Geschäftsregeln. Hier ist eine
+        Aufzählung aller Regeln mitsamt den Aufgaben, bei denen sie hinzugefügt
+        wurden.
+      </p>
+      <p class="exercise-rules-heading">Aufgabe 1:</p>
+      <ol class="exercise-rules">
+        <li>Alle Briefe nach Deutschland zum Warenausgang 1.</li>
+        <li>Alle Pakete nach Deutschland zum Warenausgang 4.</li>
+        <li>
+          Alle anderen Briefe und Pakete gehen zurück an den Absender. Dies wird
+          durch Warenausgang 20 repräsentiert.
+        </li>
+      </ol>
+      <p class="exercise-rules-heading">Aufgabe 2:</p>
+      <ol class="exercise-rules" start="4">
+        <li>Alle Briefe nach Österreich zu Warenausgang 2.</li>
+        <li>Alle Pakete nach Österreich zu Warenausgang 5.</li>
+        <li>
+          Alle EU fremden Pakete oder Briefe gehen zum Zoll. Dieser wird durch
+          Warenausgang 21 repräsentiert.
+        </li>
+      </ol>
+      <p class="exercise-rules-heading">Aufgabe 3:</p>
+      <ol class="exercise-rules" start="7">
+        <li>
+          Alle Sperrgut (<span class="inline-code">type: "bulky"</span>)
+          Lieferungen nach Deutschland zu Warenausgang 6.
+        </li>
+        <li>
+          Alle Sperrgut (<span class="inline-code">type: "bulky"</span>)
+          Lieferungen nach Österreich zu Warenausgang 7.
+        </li>
+        <li>
+          Alle EU fremden Sperrgut Lieferungen gehen zum Zoll. Dieser wird durch
+          Warenausgang 21 repräsentiert.
+        </li>
+      </ol>
+      <h2>Parameter zu <i>getAccount</i></h2>
+      <p class="code">
+        {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;type: "letter" | "parcel" | "bulky",<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;country: <i>Name des Landes</i>,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;plz: <i>PLZ</i>,<br />
+        }<br />
+      </p>
+      <div style="clear: both"></div>
+      <div class="general-information">
+        <h2>Länder</h2>
+        <ol>
+          <li>Deutschland</li>
+        </ol>
+        <p class="exercise-rules-heading">EU Länder:</p>
+        <ol class="exercise-rules" start="2">
+          <li>Österreich</li>
+          <li>⚠️ England (Achtung: wechselt Zugehörigkeit in einer Aufgabe)</li>
+        </ol>
+        <p class="exercise-rules-heading">EU-fremde Länder:</p>
+        <ol class="exercise-rules" start="3">
+          <li>⚠️ England (Achtung: wechselt Zugehörigkeit in einer Aufgabe)</li>
+          <li>USA</li>
+        </ol>
+      </div>
+      <h1>Interne DSL (A4 bis A9)</h1>
+      <h2>Geschäftsregeln</h2>
+      <p>
+        Je nach Aufgabe unterscheiden sich unsere Geschäftsregeln. Hier ist eine
+        Aufzählung aller Regeln mitsamt den Aufgaben, bei denen sie hinzugefügt
+        wurden.
+      </p>
+      <p class="exercise-rules-heading">Aufgabe 4:</p>
+      <ol class="exercise-rules">
+        <li>Alle Briefe nach Deutschland zum Warenausgang 1.</li>
+        <li>Alle Pakete nach Deutschland zum Warenausgang 4.</li>
+        <li>Alle Briefe nach Österreich zu Warenausgang 2.</li>
+        <li>Alle Pakete nach Österreich zu Warenausgang 5.</li>
+        <li>
+          Alle EU fremden Pakete oder Briefe gehen zum Zoll. Dieser wird durch
+          Warenausgang 21 repräsentiert.
+        </li>
+        <li>Alle Sperrgut Lieferungen nach Deutschland zu Warenausgang 6.</li>
+        <li>Alle Sperrgut Lieferungen nach Österreich zu Warenausgang 7.</li>
+        <li>
+          Alle EU fremden Sperrgut Lieferungen gehen zum Zoll. Dieser wird durch
+          Warenausgang 21 repräsentiert.
+        </li>
+      </ol>
+      <p class="exercise-rules-heading">Aufgabe 5:</p>
+      <ol class="exercise-rules" start="9">
+        <li>Alle Gefahrgüter nach Deutschland zum Warenausgang 3.</li>
+        <li>
+          Alle Gefahrgüter zu EU-Ländern (außer DE) zur manuellen Prüfung. Diese
+          wird durch Warenausgang 22 repräsentiert.
+        </li>
+        <li>
+          Alle EU fremden Gefahrgüter gehen zurück an den Absender. Dies wird
+          durch Warenausgang 20 repräsentiert.
+        </li>
+      </ol>
+      <p class="exercise-rules-heading">Aufgabe 6:</p>
+      <ol class="exercise-rules" start="12">
+        <li>Alle Briefe nach England zum Warenausgang 10.</li>
+        <li>Alle Pakete nach England zum Warenausgang 11.</li>
+        <li>Alle Sperrgut Lieferungen nach England zum Warenausgang 12.</li>
+      </ol>
+      <p class="exercise-rules-heading">Aufgabe 7:</p>
+      <ol class="exercise-rules" start="15">
+        <li>
+          Alle Pakete mit einem Gewicht unter 5kg nach Deutschland zum
+          Warenausgang 1.
+        </li>
+      </ol>
+      <p class="exercise-rules-heading">Aufgabe 8:</p>
+      <ol class="exercise-rules" start="16">
+        <li>Express-Pakete in die EU zu Warenausgang 8.</li>
+        <li>EU-fremde Express-Pakete zum Zoll.</li>
+        <li>Express-Sperrgut zu Warenausgang 9.</li>
+        <li>EU-fremdes Express-Sperrgut zum Zoll.</li>
+      </ol>
+      <p>
+        <i>(Achtung: In Aufgabe 6 ist England wieder der EU beigetreten.)</i>
+      </p>
+      <p class="exercise-rules-heading">Aufgabe 9:</p>
+      <ol class="exercise-rules" start="20">
+        <li>
+          Alle Sendungen mit dem Ziel Heidelberg (PLZ 69115) in Deutschland
+          gehen zum Versanddienstleister ABC. Dieser wird durch den Warenausgang
+          23 repräsentiert.
+        </li>
+      </ol>
+      <h2>Aufbau der internen DSL</h2>
+      <p>Eine neue Regel hinzufügen:</p>
+      <p class="code">
+        rule(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;<i>Konditionen hier ...</i><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;account = "<i>Warenausgangsnummer</i>"<br />
+        )
+      </p>
+      <p>Konditionen:</p>
+      <p class="code">
+        country = "<i>Landname</i>",
+        <span class="comment"
+          >// Land muss gleich dem <i>Landnamen</i> sein.</span
+        ><br />
+        letter, <span class="comment">// Sendung ist ein Brief.</span><br />
+        parcel, <span class="comment">// Sendung ist ein Paket.</span><br />
+        bulky, <span class="comment">// Sendung ist ein Sperrgut.</span><br />
+        plz = "<i>PLZ</i>",
+        <span class="comment">// Postleitzahl fängt an mit <i>PLZ</i>.</span
+        ><br />
+        dangerous [ = true | false ],
+        <span class="comment"
+          >// Sendung ist ein Gefahrgut. Der Wert <i>true | false</i> ist
+          optional.</span
+        ><br />
+        express [ = true | false ],
+        <span class="comment"
+          >// Wird per Expressversand versendet. Der Wert
+          <i>true | false</i> ist optional.</span
+        ><br />
+      </p>
+      <p>
+        Bitte beachte, dass <span class="inline-code">bulky</span>,
+        <span class="inline-code">dangerous</span> und
+        <span class="inline-code">express</span> explizit angegeben sein muss.
+        Sonst wird automatisch verhindert, dass Sendunge mit diesen
+        Charakteristiken in den Regeln erfasst werden.
+      </p>
+      <p>Beispiel:</p>
+      <p class="code">
+        rule(<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;country = "Deutschland", bulky, account =
+        "47"<br />
+        )
+      </p>
+      <h2>Aufbau der <span class="internal-code">Rules</span>-Klasse</h2>
+      <p class="code">
+        <span class="comment">/**</span><br />
+        <span class="comment">&nbsp;* Erstellt eine neue Regel. Benötigt einen Warenausgang.</span><br />
+        <span class="comment">&nbsp;*</span><br />
+        <span class="comment">&nbsp;* @param {string} account Warenausgang</span><br />
+        <span class="comment">&nbsp;* @returns {Rule} Die Regel</span><br />
+        <span class="comment">&nbsp;*/</span><br />
+        function createNewRule(account);</br /></br /></br />
+        class Rule {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;* Fügt eine Kondition hinzu, die nur von Briefen erfüllt wird.</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;*/</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;function addLetterCondition();<br />
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;* Fügt eine Kondition hinzu, die nur von Paketen erfüllt wird.</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;*/</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;function addParcelCondition();<br />
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;* Fügt eine Kondition für ein bestimmtes Land hinzu.</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;*</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;* @param {string} country Land</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;*/</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;function addCountryCondition(string country);<br />
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;* Fügt eine Kondition hinzu, die immer erfüllt wird.</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;*/</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;function addCatchAllCondition();<br />
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;* Testet, ob die Regel auf die gegebene Sendung / die Testeingabe zutrifft.</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;*</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;* @param {Delivery} delivery Sendung / Testeingabe</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;* @return {bool} Trifft die Regel zu?</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&nbsp;*/</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;function test(Delivery delivery);<br />
+        }
+      </p>
+      <div style="clear: both"></div>
+      <div class="general-information">
+        <h2>Länder</h2>
+        <ol>
+          <li>Deutschland</li>
+        </ol>
+        <p class="exercise-rules-heading">EU Länder:</p>
+        <ol class="exercise-rules" start="2">
+          <li>Österreich</li>
+          <li>England</li>
+        </ol>
+        <p class="exercise-rules-heading">EU-fremde Länder:</p>
+        <ol class="exercise-rules" start="3">
+          <li>USA</li>
+        </ol>
+      </div>
+      <h1>Externe DSL (A11)</h1>
+      <h2>Geschäftsregeln</h2>
+      <ol>
+        <li>Alle Briefe nach Deutschland zum Warenausgang 1.</li>
+        <li>Alle Pakete nach Deutschland zum Warenausgang 4.</li>
+        <li>Alle Briefe nach Österreich zu Warenausgang 2.</li>
+        <li>Alle Pakete nach Österreich zu Warenausgang 5.</li>
+        <li>
+          Alle EU fremden Pakete oder Briefe gehen zum Zoll. Dieser wird durch
+          Warenausgang 21 repräsentiert.
+        </li>
+        <li>Alle Sperrgut Lieferungen nach Deutschland zu Warenausgang 6</li>
+        <li>Alle Sperrgut Lieferungen nach Österreich zu Warenausgang 7</li>
+        <li>
+          Alle EU fremden Sperrgut Lieferungen gehen zum Zoll. Dieser wird durch
+          Warenausgang 21 repräsentiert.
+        </li>
+        <li>Alle Gefahrgüter nach Deutschland zum Warenausgang 3</li>
+        <li>
+          Alle Gefahrgüter zu EU-Ländern (außer DE) zur manuellen Prüfung. Diese
+          wird durch Warenausgang 22 repräsentiert.
+        </li>
+        <li>
+          Alle EU fremden Gefahrgüter gehen zurück an den Absender. Dies wird
+          durch Warenausgang 20 repräsentiert.
+        </li>
+        <li>Alle Briefe nach England zum Warenausgang 10.</li>
+        <li>Alle Pakete nach England zum Warenausgang 11.</li>
+        <li>Alle Sperrgut Lieferungen nach England zum Warenausgang 12.</li>
+        <li>
+          Alle Pakete mit einem Gewicht unter 5kg nach Deutschland zum
+          Warenausgang 1
+        </li>
+        <li>Express-Pakete in die EU zu Warenausgang 8</li>
+        <li>EU-fremde Express-Pakete zum Zoll</li>
+        <li>Express-Sperrgut zu Warenausgang 9</li>
+        <li>EU-fremdes Express-Sperrgut zum Zoll</li>
+        <li>
+          Alle Sendungen mit dem Ziel Heidelberg (PLZ 69115) in Deutschland
+          gehen zum Versanddienstleister ABC. Dieser wird durch den Warenausgang
+          23 repräsentiert.
+        </li>
+      </ol>
+      <h2>Aufbau der externen DSL</h2>
+      <p>
+        Unsere externe DSL versucht so stark wie möglich deutsche Sätz
+        nachzustellen. Jede Regel fängt daher mit einem
+        <span class="inline-code">Sende</span> an. Darauf folgen kann sowohl die
+        Paketart <span class="inline-code">einen Brief</span> oder
+        <span class="inline-code">ein Paket</span> oder schon eine Bedingung
+        z. B. <span class="inline-code">Gefahrengut</span>. Zusätzlich dazu sind
+        einige Artikel und Präpositionen erlaubt (z.B.
+        <span class="inline-code">einen</span> oder
+        <span class="inline-code">von</span>).
+      </p>
+      <p>
+        Bedingungen, die einen Wert benötigen, erwarten, dass der Wert direkt
+        auf die Bedingung folgt:
+        <span class="inline-code">mit Land Deutschland</span> oder
+        <span class="inline-code">mit PLZ 68251</span>.
+      </p>
+      <p>Verfügbare Bedingungen:</p>
+      <ol>
+        <li><span class="inline-code">Brief</span></li>
+        <li><span class="inline-code">Expressversand</span></li>
+        <li><span class="inline-code">Gefahrengut</span></li>
+        <li><span class="inline-code">Land</span></li>
+        <li><span class="inline-code">Maximalgewicht</span></li>
+        <li><span class="inline-code">Paket</span></li>
+        <li><span class="inline-code">PLZ</span></li>
+        <li><span class="inline-code">Sperrgut</span></li>
+        <li><span class="inline-code">Warenausgang</span></li>
+      </ol>
+      <p>Verfügbare Artikel, Präpositionen und sonstige Worte:</p>
+      <ol>
+        <li><span class="inline-code">als</span></li>
+        <li><span class="inline-code">ein</span></li>
+        <li><span class="inline-code">eine</span></li>
+        <li><span class="inline-code">einem</span></li>
+        <li><span class="inline-code">einen</span></li>
+        <li><span class="inline-code">im</span></li>
+        <li><span class="inline-code">mit</span></li>
+        <li>
+          <span class="inline-code">Sendung</span
+          ><span> - Bedeutung: Deckt Paket, Brief und Sperrgut auf einmal ab</span>
+        </li>
+        <li><span class="inline-code">und</span></li>
+        <li><span class="inline-code">von</span></li>
+        <li><span class="inline-code">zu</span></li>
+        <li><span class="inline-code">zum</span></li>
+      </ol>
+      <p>
+        Mit den verfügbaren Wörtern könnte z.B. die folgenden Sätze gebildet
+        werden.
+      </p>
+      <p class="code">
+        Sende eine Sendung mit Gefahrengut und Land Österreich zum Warenausgang
+        45.<br />
+        Sende ein Gefahrengut zum Warenausgang 39.<br />
+        Sende einen Brief mit PLZ 12345 und Maximalgewicht von 15 kg zum
+        Warenausgang 85.
+      </p>
+    </div>
+    <div class="bottom-margin">&nbsp;</div>
+  </body>
+</html>

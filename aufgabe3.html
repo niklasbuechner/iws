@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Aufgabe 3</title>
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/animations.css" />
+</head>
+<script>
+    /**
+     * Definition of a letter or parcel or bulky goods
+     * @typedef {Delivery}
+     * @property {string} type - either 'letter' or 'parcel' or 'bulky'
+     * @property {string} country - e.g. 'Deutschland'
+     * @property {string} plz - e.g. '64832'
+     **/
+
+    /**
+     * This function determines the truck numbers for every delivery it is handed.
+     * 
+     * TODO: Needs implementation.
+     * 
+     * @param {Delivery} delivery - The letter or parcel or bulky goods to route. For the exact spec, see comment above.
+     **/
+    function getAccount(delivery) {
+        // if (delivery.country == "Schweden") {
+        //     if (delivery.type == 'letter') {
+        //         return "73";
+        //     }
+        // }
+
+        return "20";
+    }
+</script>
+
+<body>
+    <div class="header">
+        <div class="content">
+            <div class="title">
+                Aufgabe 3
+            </div>
+            <nav>
+                <span><a href="./cheatsheet.html">Cheat Sheet</a></span>
+                -
+                Aufgabe
+                <span><a href="./aufgabe1.html">1</a></span>
+                <span><a href="./aufgabe2.html">2</a></span>
+                <span>3</span>
+                <span><a href="./aufgabe4.html">4</a></span>
+                <span><a href="./aufgabe5.html">5</a></span>
+                <span><a href="./aufgabe6.html">6</a></span>
+                <span><a href="./aufgabe7.html">7</a></span>
+                <span><a href="./aufgabe8.html">8</a></span>
+                <span><a href="./aufgabe9.html">9</a></span>
+                <span><a href="./aufgabe10.html">10</a></span>
+                <span><a href="./aufgabe11.html">11</a></span>
+                <span><a href="./aufgabe12.html">12</a></span>
+            </nav>
+        </div>
+    </div>
+    <div class="content">
+        <p>
+            Nach der Erweiterung der Fahrzeugflotte steht nun eine neue Versandart zur Verfügung.
+            Ab sofort ist es möglich, auch <strong>Sperrgut</strong> zu versenden. Da der Umfang der Lieferungen
+            nicht sehr hoch ist, wird das gesamte Sperrgut je nach Land zu einem Warenausgang
+            gelenkt, um dort regional verteilt werden zu können. Zu beachten ist jedoch, dass Waren
+            außerhalb der EU wieder vom Zoll geprüft werden müssen.
+        </p>
+        <p>
+            Bitte passe das System so an, dass es:
+        <ol>
+            <li>Alle Anforderungen aus Aufgabe 2 erfüllt.</li>
+            <li>Alle Sperrgut (<span class="inline-code">type: "bulky"</span>) Lieferungen nach Deutschland zu
+                Warenausgang 6.</li>
+            <li>Alle Sperrgut (<span class="inline-code">type: "bulky"</span>) Lieferungen nach Österreich zu
+                Warenausgang 7.</li>
+            <li>Alle EU-fremden Sperrgut (<span class="inline-code">type: "bulky"</span>) Lieferungen gehen zum Zoll.
+                Dieser wird durch Warenausgang 21 repräsentiert.</li>
+        </ol>
+        </p>
+        <h1>Visualisierung</h1>
+        <div id="animation"></div>
+        <h1>Tests</h1>
+        <div style="text-align: right;">
+            <button id="runTests">
+                Alle Tests ausführen
+            </button>
+        </div>
+        <div id="tests"></div>
+    </div>
+    <script src="./js/tests.js"></script>
+    <script src="./js/animation.js"></script>
+    <script src="js/test/aufgabe3.test.js"></script>
+</body>
+
+</html>

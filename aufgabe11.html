@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Aufgabe 11</title>
+        <link rel="stylesheet" href="./style/style.css" />
+        <link rel="stylesheet" href="./style/animations.css" />
+    </head>
+    <body>
+        <div class="header">
+            <div class="content">
+                <div class="title">
+                    Aufgabe 11
+                </div>
+                <nav>
+                    <span><a href="./cheatsheet.html">Cheat Sheet</a></span>
+                    -
+                    Aufgabe
+                    <span><a href="./aufgabe1.html">1</a></span>
+                    <span><a href="./aufgabe2.html">2</a></span>
+                    <span><a href="./aufgabe3.html">3</a></span>
+                    <span><a href="./aufgabe4.html">4</a></span>
+                    <span><a href="./aufgabe5.html">5</a></span>
+                    <span><a href="./aufgabe6.html">6</a></span>
+                    <span><a href="./aufgabe7.html">7</a></span>
+                    <span><a href="./aufgabe8.html">8</a></span>
+                    <span><a href="./aufgabe9.html">9</a></span>
+                    <span><a href="./aufgabe10.html">10</a></span>
+                    <span>11</span>
+                    <span><a href="./aufgabe12.html">12</a></span>
+                </nav>
+            </div>
+        </div>
+        <div class="content">
+            <p>
+                Deine Spedition hat damit begonnen, neben der internen eine <strong>externe DSL</strong> zu erstellen. Wende
+                die zuvor erstellen Regeln nun auf die externe an.
+            </p>
+            <p>
+                Bitte passe das System so an, dass es:
+                <ol>
+                    <li>Alle Briefe nach Deutschland zum Warenausgang 1.</li>
+                    <li>Alle Pakete nach Deutschland zum Warenausgang 4.</li>
+                    <li>Alle Briefe nach Österreich zu Warenausgang 2.</li>
+                    <li>Alle Pakete nach Österreich zu Warenausgang 5.</li>
+                    <li>Alle EU-fremden Pakete oder Briefe gehen zum Zoll. Dieser wird durch Warenausgang 21 repräsentiert.</li>
+                    <li>Alle Sperrgut Lieferungen nach Deutschland zu Warenausgang 6</li>
+                    <li>Alle Sperrgut Lieferungen nach Österreich zu Warenausgang 7 </li>
+                    <li>Alle EU-fremden Sperrgut Lieferungen gehen zum Zoll. Dieser wird durch Warenausgang 21 repräsentiert.</li>
+                    <li>Alle Gefahrgüter nach Deutschland zum Warenausgang 3</li>
+                    <li>Alle Gefahrgüter zu EU-Ländern (außer DE) zur manuellen Prüfung. Diese wird durch Warenausgang 22 repräsentiert.</li>
+                    <li>Alle EU-fremden Gefahrgüter gehen zurück an den Absender. Dies wird durch Warenausgang 20 repräsentiert.</li>
+                    <li>Alle Briefe nach England zum Warenausgang 10.</li>
+                    <li>Alle Pakete nach England zum Warenausgang 11.</li>
+                    <li>Alle Sperrgut Lieferungen nach England zum Warenausgang 12.</li>
+                    <li>Alle Pakete mit einem Gewicht unter 5kg nach Deutschland zum Warenausgang 1</li>
+                    <li>Express-Pakete in die EU zu Warenausgang 8</li>
+                    <li>EU-fremde Express-Pakete zum Zoll</li>
+                    <li>Express-Sperrgut in die EU zu Warenausgang 9</li>
+                    <li>EU-fremdes Express-Sperrgut zum Zoll</li>
+                    <li>Alle Sendungen mit dem Ziel Heidelberg (PLZ 69115) in Deutschland gehen zum Versanddienstleister ABC. Dieser wird durch den Warenausgang 23 repräsentiert.</li>
+                </ol>
+            </p>
+            <h1>Visualisierung</h1>
+            <div id="animation"></div>
+            <h1>Externe DSL</h1>
+            <div>
+                <!--
+                    Insert the correct (external) DSL statements here
+                    Possible syntax can look as follows:
+                    'Sende ein Gefahrengut mit PLZ 11111 zum Warenausgang 99'
+                    For more information visit the cheat sheet.
+
+                    Sende ein Sperrgut mit PLZ 123456 zum Warenausgang 56.
+                    Sende einen Brief mit Land Schweden zum Warenausgang 64.
+                    Sende ein Gefahrengut zum Warenausgang 38.
+                -->
+                <textarea id="external-dsl">
+                    Sende eine Sendung zum Warenausgang 20.
+                </textarea>
+            </div>
+            <div id="alert_output"></div>
+            <h1>Tests</h1>
+            <div style="text-align: right;">
+                <button id="runTests">
+                    Alle Tests ausführen
+                </button>
+            </div>
+            <div id="tests"></div>
+        </div>
+        <script src="./js/tests.js"></script>
+        <script src="./js/animation.js"></script>
+        <script src="./js/conditions.js"></script>
+        <script src="./js/rule.js"></script>
+        <script src="./js/externalDsl.js"></script>
+        <script src="js/test/aufgabe11.test.js"></script>
+    </body>
+</html>

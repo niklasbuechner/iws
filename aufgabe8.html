@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Aufgabe 8</title>
+        <link rel="stylesheet" href="./style/style.css" />
+        <link rel="stylesheet" href="./style/animations.css" />
+    </head>
+    <script>
+        /**
+         * Definition of a rule for letter or parcel or bulky goods
+         * rules can have following properties:
+         * Optional properties are indicated by [] Notation
+         * @property {string} [country] - e.g. 'Deutschland'
+         * @property {any} [letter | parcel | bulky]
+         * @property {any} [dangerous]
+         * @property {any} [express]
+         * @property {Number} maxWeight - e.g. 20
+         * @property {Number} account - e.g. 1
+         **/
+
+        /**
+         * This function returns the necessary rules which contain properties
+         * TODO: Needs implementation.
+         * For more information visit the cheat sheet.
+         **/
+        function getInternalDsl() {
+            return [
+                // rule(
+                //     country = "Schweden", parcel, account = 73,
+                // ),
+                rule(
+                    account = 20,
+                ),
+            ];
+        }
+    </script>
+    <body>
+        <div class="header">
+            <div class="content">
+                <div class="title">
+                    Aufgabe 8
+                </div>
+                <nav>
+                    <span><a href="./cheatsheet.html">Cheat Sheet</a></span>
+                    -
+                    Aufgabe
+                    <span><a href="./aufgabe1.html">1</a></span>
+                    <span><a href="./aufgabe2.html">2</a></span>
+                    <span><a href="./aufgabe3.html">3</a></span>
+                    <span><a href="./aufgabe4.html">4</a></span>
+                    <span><a href="./aufgabe5.html">5</a></span>
+                    <span><a href="./aufgabe6.html">6</a></span>
+                    <span><a href="./aufgabe7.html">7</a></span>
+                    <span>8</span>
+                    <span><a href="./aufgabe9.html">9</a></span>
+                    <span><a href="./aufgabe10.html">10</a></span>
+                    <span><a href="./aufgabe11.html">11</a></span>
+                    <span><a href="./aufgabe12.html">12</a></span>
+                </nav>
+            </div>
+        </div>
+        <div class="content">
+            <p>
+                Um mit der Konkurrenz mithalten zu können, gibt es für <strong>Pakete</strong> und <strong>Sperrgut</strong> eine neue
+                Versandmöglichkeit, diese per <strong>Express</strong> zu verschicken. Hierbei werden diese europaweit
+                gesondert verschickt. EU-fremde Express-Sendungen müssen weiterhin zum Zoll.
+            </p>
+            <p>
+                Bitte passe das System so an, dass es:
+                <ol>
+                    <li>Alle Anforderungen aus Aufgabe 7 erfüllt.</li>
+                    <li>Express-Pakete in die EU zu Warenausgang 8.</li>
+                    <li>EU-fremde Express-Pakete zum Zoll.</li>
+                    <li>Express-Sperrgut in die EU zu Warenausgang 9.</li>
+                    <li>EU-fremdes Express-Sperrgut zum Zoll.</li>
+                </ol>
+            </p>
+            <h1>Visualisierung</h1>
+            <div id="animation"></div>
+            <h1>Tests</h1>
+            <div style="text-align: right;">
+                <button id="runTests">
+                    Alle Tests ausführen
+                </button>
+            </div>
+            <div id="tests"></div>
+        </div>
+        <script src="./js/tests.js"></script>
+        <script src="./js/animation.js"></script>
+        <script src="./js/conditions.js"></script>
+        <script src="./js/rule.js"></script>
+        <script src="./js/internalDsl.js"></script>
+        <script src="js/test/aufgabe8.test.js"></script>
+    </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Aufgabe 5</title>
+        <link rel="stylesheet" href="./style/style.css" />
+        <link rel="stylesheet" href="./style/animations.css" />
+    </head>
+    <script>
+        /**
+         * Definition of a rule for letter or parcel or bulky goods
+         * rules can have following properties:
+         * Optional properties are indicated by [] Notation
+         * @property {string} [country] - e.g. 'Deutschland'
+         * @property {any} [letter | parcel | bulky]
+         * @property {any} [dangerous]
+         * @property {Number} account - e.g. 1
+         **/
+
+        /**
+         * This function returns the necessary rules which contain properties
+         * TODO: Needs implementation.
+         * For more information visit the cheat sheet.
+         **/
+        function getInternalDsl() {
+            return [
+                // rule(
+                //     country = "Schweden", parcel, account = 73,
+                // ),
+                rule(
+                    account = 20,
+                ),
+            ];
+        }
+    </script>
+    <body>
+        <div class="header">
+            <div class="content">
+                <div class="title">
+                    Aufgabe 5
+                </div>
+                <nav>
+                    <span><a href="./cheatsheet.html">Cheat Sheet</a></span>
+                    -
+                    Aufgabe
+                    <span><a href="./aufgabe1.html">1</a></span>
+                    <span><a href="./aufgabe2.html">2</a></span>
+                    <span><a href="./aufgabe3.html">3</a></span>
+                    <span><a href="./aufgabe4.html">4</a></span>
+                    <span>5</span>
+                    <span><a href="./aufgabe6.html">6</a></span>
+                    <span><a href="./aufgabe7.html">7</a></span>
+                    <span><a href="./aufgabe8.html">8</a></span>
+                    <span><a href="./aufgabe9.html">9</a></span>
+                    <span><a href="./aufgabe10.html">10</a></span>
+                    <span><a href="./aufgabe11.html">11</a></span>
+                    <span><a href="./aufgabe12.html">12</a></span>
+                </nav>
+            </div>
+        </div>
+        <div class="content">
+            <p>
+                Eine neue Geschäftsmöglichkeit hat sich ergeben und wir erweitern das Angebot unserer
+                Spedition um die Möglichkeit, <strong>Gefahrgut</strong> zu versenden! Hier ist es wichtig zu beachten,
+                dass alle EU-fremden Gefahrgut Lieferungen unzulässig sind und somit zurück an den
+                Absender müssen. Für Gefahrgut Sendungen innerhalb Deutschlands gibt es einen neuen
+                gesonderten Warenausgang, für alle anderen EU-Länder muss das Gefahrgut zuerst zu einer
+                manuellen Prüfung.
+            </p>
+            <p>
+                Bitte passe das System so an, dass es:
+                <ol>
+                    <li>Alle Anforderungen aus Aufgabe 4 erfüllt</li>
+                    <li>Alle Gefahrgüter nach Deutschland zum Warenausgang 3.</li>
+                    <li>Alle Gefahrgüter zu EU-Ländern (außer DE) zur manuellen Prüfung. Diese wird durch Warenausgang 22 repräsentiert.</li>
+                    <li>Alle EU-fremden Gefahrgüter gehen zurück an den Absender. Dies wird durch Warenausgang 20 repräsentiert.</li>
+                </ol>
+            </p>
+            <h1>Visualisierung</h1>
+            <div id="animation"></div>
+            <h1>Tests</h1>
+            <div style="text-align: right;">
+                <button id="runTests">
+                    Alle Tests ausführen
+                </button>
+            </div>
+            <div id="tests"></div>
+        </div>
+        <script src="./js/tests.js"></script>
+        <script src="./js/animation.js"></script>
+        <script src="./js/conditions.js"></script>
+        <script src="./js/rule.js"></script>
+        <script src="./js/internalDsl.js"></script>
+        <script src="js/test/aufgabe5.test.js"></script>
+    </body>
+</html>

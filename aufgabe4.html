@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Aufgabe 4</title>
+        <link rel="stylesheet" href="./style/style.css" />
+        <link rel="stylesheet" href="./style/animations.css" />
+    </head>
+    <script>
+        /**
+         * Definition of a rule for letter or parcel or bulky goods
+         * rules can have following properties:
+         * Optional properties are indicated by [] Notation
+         * @property {string} [country] - e.g. 'Deutschland'
+         * @property {any} [letter | parcel | bulky]
+         * @property {Number} account - e.g. 1
+         **/
+
+        /**
+         * This function returns the necessary rules which contain properties
+         * TODO: Needs implementation.
+         * For more information visit the cheat sheet.
+         **/
+        function getInternalDsl() {
+            return [
+                // rule(
+                //     country = "Schweden", parcel, account = 73,
+                // ),
+                rule(
+                    account = 20,
+                ),
+            ];
+        }
+    </script>
+    <body>
+        <div class="header">
+            <div class="content">
+                <div class="title">
+                    Aufgabe 4
+                </div>
+                <nav>
+                    <span><a href="./cheatsheet.html">Cheat Sheet</a></span>
+                    -
+                    Aufgabe
+                    <span><a href="./aufgabe1.html">1</a></span>
+                    <span><a href="./aufgabe2.html">2</a></span>
+                    <span><a href="./aufgabe3.html">3</a></span>
+                    <span>4</span>
+                    <span><a href="./aufgabe5.html">5</a></span>
+                    <span><a href="./aufgabe6.html">6</a></span>
+                    <span><a href="./aufgabe7.html">7</a></span>
+                    <span><a href="./aufgabe8.html">8</a></span>
+                    <span><a href="./aufgabe9.html">9</a></span>
+                    <span><a href="./aufgabe10.html">10</a></span>
+                    <span><a href="./aufgabe11.html">11</a></span>
+                    <span><a href="./aufgabe12.html">12</a></span>
+                </nav>
+            </div>
+        </div>
+        <div class="content">
+            <p>
+                Dein Speditionsunternehmen hat damit begonnen, eine <strong>interne DSL</strong> aufzusetzen. Setze nun
+                die vorherigen Regeln, die du zuvor in JavaScript umgesetzt hast, mit der internen DSL
+                um.
+            </p>
+            <p>
+                Bitte passe das System so an, dass es:
+                <ol>
+                    <li>Alle Briefe nach Deutschland zum Warenausgang 1.</li>
+                    <li>Alle Pakete nach Deutschland zum Warenausgang 4.</li>
+                    <li>Alle Briefe nach Österreich zu Warenausgang 2.</li>
+                    <li>Alle Pakete nach Österreich zu Warenausgang 5.</li>
+                    <li>Alle EU-fremden Pakete oder Briefe gehen zum Zoll. Dieser wird durch Warenausgang 21 repräsentiert.</li>
+                    <li>Alle Sperrgut Lieferungen nach Deutschland zu Warenausgang 6.</li>
+                    <li>Alle Sperrgut Lieferungen nach Österreich zu Warenausgang 7.</li>
+                    <li>Alle EU-fremden Sperrgut Lieferungen gehen zum Zoll. Dieser wird durch Warenausgang 21 repräsentiert.</li>
+                </ol>
+            </p>
+            <h1>Visualisierung</h1>
+            <div id="animation"></div>
+            <h1>Tests</h1>
+            <div style="text-align: right;">
+                <button id="runTests">
+                    Alle Tests ausführen
+                </button>
+            </div>
+            <div id="tests"></div>
+        </div>
+        <script src="./js/tests.js"></script>
+        <script src="./js/animation.js"></script>
+        <script src="./js/conditions.js"></script>
+        <script src="./js/rule.js"></script>
+        <script src="./js/internalDsl.js"></script>
+        <script src="js/test/aufgabe4.test.js"></script>
+    </body>
+</html>
